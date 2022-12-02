@@ -14,9 +14,9 @@ val expectedResultMap = mapOf(
 )
 
 val resultMap = mapOf(
-"A X" to 3, "A Y" to 6, "A Z" to 0,
-"B X" to 0, "B Y" to 3, "B Z" to 6,
-"C X" to 6, "C Y" to 0, "C Z" to 3
+    "A X" to 3, "A Y" to 6, "A Z" to 0,
+    "B X" to 0, "B Y" to 3, "B Z" to 6,
+    "C X" to 6, "C Y" to 0, "C Z" to 3
 )
 
 fun main() {
