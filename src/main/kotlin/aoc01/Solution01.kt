@@ -6,8 +6,6 @@ fun main() {
     val lines = Paths.get("src/main/resources/aoc_01.txt").toFile().useLines { it.toMutableList() }
     val linesAsInt = lines.map { it.toIntOrNull() }.toMutableList();
 
-    linesAsInt.add(null)
-
     println(solution1(linesAsInt))
     println(solution2(linesAsInt))
 }
@@ -21,17 +19,11 @@ fun solution2(calories: List<Int?>): Int {
 }
 
 fun solve(lines: List<Int?>, size: Int): Int {
-    var lastIndex = 0;
-
-    return lines.asSequence().withIndex()
-        .filter { it.value == null }
-        .map { it.index }
-        .map { it ->
-            val currentIndex = lastIndex;
-            lastIndex = it + 1;
-            lines.subList(currentIndex, it).sumOf { it!! }
-        }
+    return lines.fold(mutableListOf(mutableListOf<Int>())) { acc, e ->
+        if (e != null) acc.last().add(e); else acc.add(mutableListOf()); acc
+    }
+        .map { it.sum() }
         .sortedDescending()
         .take(size)
-        .sum()
+        .sum();
 }
