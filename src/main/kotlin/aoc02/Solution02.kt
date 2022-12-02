@@ -19,7 +19,7 @@ val resultMap = mapOf(
 "C X" to 6, "C Y" to 0, "C Z" to 3
 )
 
-fun main(args: Array<String>) {
+fun main() {
     val lines = Paths.get("src/main/resources/aoc_02.txt").toFile().useLines { it.toList() }
 
     println(solution1(lines))

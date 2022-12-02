@@ -2,7 +2,7 @@ package aoc01
 
 import java.nio.file.Paths
 
-fun main(args: Array<String>) {
+fun main() {
     val lines = Paths.get("src/main/resources/aoc_01.txt").toFile().useLines { it.toList() }
     val linesAsInt = lines.map { it.toIntOrNull() };
 
