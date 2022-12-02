@@ -10,15 +10,15 @@ fun main() {
     println(solution2(linesAsInt))
 }
 
-fun solution1(calories: List<Int?>): Int? {
+fun solution1(calories: List<Int?>): Int {
     return solve(calories, 1);
 }
 
-fun solution2(calories: List<Int?>): Int? {
+fun solution2(calories: List<Int?>): Int {
     return solve(calories, 3);
 }
 
-fun solve(lines: List<Int?>, size: Int): Int? {
+fun solve(lines: List<Int?>, size: Int): Int {
     val caloriesByElf = mutableListOf<List<Int>>()
     val caloriesElf = mutableListOf<Int>()
 

@@ -26,11 +26,11 @@ fun main() {
     println(solution2(lines))
 }
 
-fun solution1(plays: List<String>): Int? {
+fun solution1(plays: List<String>): Int {
     return solve(plays)
 }
 
-fun solution2(plays: List<String>): Int? {
+fun solution2(plays: List<String>): Int {
     val expectedPlays = plays.map { it ->
         val opponentPlay = it.take(1);
         val expectedResult = expectedResultMap[it.takeLast(1)]
@@ -40,6 +40,6 @@ fun solution2(plays: List<String>): Int? {
     return solve(expectedPlays)
 }
 
-fun solve(lines: List<String>): Int? {
+fun solve(lines: List<String>): Int {
     return lines.sumOf { playMap[it.takeLast(1)]!! + resultMap[it]!! }
 }
