@@ -4,7 +4,7 @@ import java.nio.file.Paths
 
 fun main() {
     val lines = Paths.get("src/main/resources/aoc_01.txt").toFile().useLines { it.toMutableList() }
-    val linesAsInt = lines.map { it.toIntOrNull() }.toMutableList();
+    val linesAsInt = lines.map { it.toIntOrNull() };
 
     println(solution1(linesAsInt))
     println(solution2(linesAsInt))
