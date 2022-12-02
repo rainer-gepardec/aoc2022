@@ -3,8 +3,10 @@ package aoc01
 import java.nio.file.Paths
 
 fun main() {
-    val lines = Paths.get("src/main/resources/aoc_01.txt").toFile().useLines { it.toList() }
-    val linesAsInt = lines.map { it.toIntOrNull() };
+    val lines = Paths.get("src/main/resources/aoc_01.txt").toFile().useLines { it.toMutableList() }
+    val linesAsInt = lines.map { it.toIntOrNull() }.toMutableList();
+
+    linesAsInt.add(null)
 
     println(solution1(linesAsInt))
     println(solution2(linesAsInt))
@@ -19,17 +21,17 @@ fun solution2(calories: List<Int?>): Int {
 }
 
 fun solve(lines: List<Int?>, size: Int): Int {
-    val caloriesByElf = mutableListOf<List<Int>>()
-    val caloriesElf = mutableListOf<Int>()
+    var lastIndex = 0;
 
-    lines.forEach {
-        if (it == null) {
-            caloriesByElf.add(caloriesElf.toMutableList())
-            caloriesElf.clear()
-        } else {
-            caloriesElf.add(it)
+    return lines.asSequence().withIndex()
+        .filter { it.value == null }
+        .map { it.index }
+        .map { it ->
+            val currentIndex = lastIndex;
+            lastIndex = it + 1;
+            lines.subList(currentIndex, it).sumOf { it!! }
         }
-    }
-
-    return caloriesByElf.map { it.sum() }.sortedDescending().take(size).sum()
+        .sortedDescending()
+        .take(size)
+        .sum()
 }
