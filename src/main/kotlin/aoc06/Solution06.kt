@@ -18,6 +18,5 @@ fun solution2(line: String): Int {
 }
 
 fun solve(line: String, markerSize: Int): Int {
-    return line.windowed(markerSize)
-        .indexOfFirst { it.toCharArray().distinct().size == markerSize } + markerSize;
+    return line.windowed(markerSize).indexOfFirst { it.toCharArray().distinct().size == markerSize } + markerSize
 }
