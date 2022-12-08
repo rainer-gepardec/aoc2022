@@ -49,6 +49,7 @@ fun solution2(map: Array<IntArray>, width: Int, height: Int): Int {
 fun solve(map: Array<IntArray>, width: Int, height: Int): Map<Pair<Int, Int>, List<List<Int>>> {
     val treeMap = mutableMapOf<Pair<Int, Int>, List<List<Int>>>()
 
+    // create map of path to edge for all trees except the outer circle
     for (y in 1 until height - 1) {
         for (x in 1 until width - 1) {
             val leftEdgeValues = mutableListOf<Int>()
