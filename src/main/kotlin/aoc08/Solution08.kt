@@ -2,13 +2,14 @@ package aoc08
 
 import java.nio.file.Paths
 
-fun <T> Sequence<T>.takeWhileInclusive(predicate: (T) -> Boolean) = sequence {
-    with(iterator()) {
-        while (hasNext()) {
-            val next = next()
-            yield(next)
-            if (!predicate(next)) break
-        }
+inline fun <T> Iterable<T>.takeWhileInclusive(
+    predicate: (T) -> Boolean
+): List<T> {
+    var shouldContinue = true
+    return takeWhile {
+        val result = shouldContinue
+        shouldContinue = predicate(it)
+        result
     }
 }
 
@@ -38,9 +39,7 @@ fun solution2(map: Array<IntArray>, width: Int, height: Int): Int {
     val treeMap = solve(map, width, height)
     return treeMap.map { tree ->
         tree.value.map { edge ->
-            edge.asSequence()
-                .takeWhileInclusive { map[tree.key.second][tree.key.first] > it }
-                .toList()
+            edge.takeWhileInclusive { map[tree.key.second][tree.key.first] > it }.toList()
         }.map { it.size }
     }.maxOf {
         it.reduce { result, value -> result.times(value) }
