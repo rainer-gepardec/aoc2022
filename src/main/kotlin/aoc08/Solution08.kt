@@ -30,14 +30,14 @@ fun main() {
 
 fun solution1(map: Array<IntArray>, width: Int, height: Int): Int {
     val treeMap = solve(map, width, height)
-    return treeMap.filter { tree ->
+    return treeMap.asSequence().filter { tree ->
         tree.value.any { edge -> edge.all { it < map[tree.key.second][tree.key.first] } }
     }.count() + (width * 2) + (height * 2) - 4
 }
 
 fun solution2(map: Array<IntArray>, width: Int, height: Int): Int {
     val treeMap = solve(map, width, height)
-    return treeMap.map { tree ->
+    return treeMap.asSequence().map { tree ->
         tree.value.map { edge ->
             edge.takeWhileInclusive { map[tree.key.second][tree.key.first] > it }.toList()
         }.map { it.size }
